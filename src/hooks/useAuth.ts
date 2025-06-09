@@ -9,7 +9,7 @@ interface AuthState {
   error: string | null;
 }
 
-export const useAuth = () => {
+export function useAuth() {
   const [authState, setAuthState] = useState<AuthState>({
     isAuthenticated: false,
     isLoading: true,
@@ -110,4 +110,4 @@ export const useAuth = () => {
     register,
     logout,
   };
-}; 
+} 

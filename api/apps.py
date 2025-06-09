@@ -6,6 +6,5 @@ class ApiConfig(AppConfig):
     name = "api"
 
     def ready(self):
-        # Import the initialization function here to ensure apps are ready
         from todo_project.firebase_utils import initialize_firebase
         initialize_firebase()

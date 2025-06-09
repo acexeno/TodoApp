@@ -3,12 +3,16 @@ from django.contrib import messages
 from django.utils import timezone
 from .models import Todo
 from .forms import TodoForm, RegistrationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
 
 # Create your views here.
 
+@login_required
 def todo_list(request):
     # Display all todos
-    todos = Todo.objects.all()
+    todos = Todo.objects.filter(user=request.user)
         
     form = TodoForm()
     
@@ -25,6 +29,7 @@ def todo_list(request):
     }
     return render(request, 'todo/todo_list.html', context)
 
+@login_required
 def todo_update(request, pk):
     todo = get_object_or_404(Todo, pk=pk)
     
@@ -43,6 +48,7 @@ def todo_update(request, pk):
     }
     return render(request, 'todo/todo_update.html', context)
 
+@login_required
 def todo_delete(request, pk):
     todo = get_object_or_404(Todo, pk=pk)
     if request.method == 'POST':
@@ -59,15 +65,13 @@ def todo_toggle_complete(request, pk):
     messages.success(request, f'Todo {status}!')
     return redirect('todo:todo_list')
 
-def register(request):
+def register_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Registration successful! You can now log in.')
-            return redirect('login') # Redirect to login page after successful registration
+            user = form.save()
+            login(request, user)
+            return redirect('todo:todo_list')
     else:
         form = RegistrationForm()
-    
-    context = {'form': form}
-    return render(request, 'registration/register.html', context)
+    return render(request, 'registration/register.html', {'form': form})

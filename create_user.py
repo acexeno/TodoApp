@@ -1,24 +1,17 @@
 import requests
 import json
 
-url = "http://127.0.0.1:8000/api/signup/"
-
-# User credentials
-email = "kenniellmart@gmail.com"
-password = "velarde112603"
-
-payload = {
-    "email": email,
-    "password": password
+user_data = {
+    "username": "testuser",
+    "password": "testpassword",
+    "email": "testuser@example.com"
 }
 
-headers = {
-    'Content-Type': 'application/json'
-}
+url = "http://127.0.0.1:8000/api/register/"
 
 try:
-    response = requests.post(url, data=json.dumps(payload), headers=headers)
-    response.raise_for_status() # Raise an HTTPError for bad responses (4xx or 5xx)
+    response = requests.post(url, json=user_data)
+    response.raise_for_status()
     print("Status Code:", response.status_code)
     print("Response Body:", response.json())
 except requests.exceptions.RequestException as e:

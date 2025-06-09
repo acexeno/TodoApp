@@ -32,9 +32,9 @@ def test_connection(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('todo_api.urls')),  # New API endpoints
-    path('api/', include('api.urls')),  # Keep old API for now
-    path('', include('todo.urls')),  # Keep old views for web
+    path('api/v1/', include('todo_api.urls')),
+    path('api/', include('api.urls')),
+    path('', include('todo.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api/test/', test_connection, name='test_connection'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
