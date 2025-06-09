@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Todo Manager</string>
+    <string name="add_todo">Add Todo</string>
+    <string name="edit_todo">Edit Todo</string>
+    <string name="delete_todo">Delete Todo</string>
+    <string name="todo_title">Title</string>
+    <string name="todo_description">Description</string>
+    <string name="todo_priority">Priority</string>
+    <string name="todo_due_date">Due Date</string>
+    <string name="priority_low">Low</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_high">High</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="logout">Logout</string>
+    <string name="error_required">This field is required</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="completed">Completed</string>
+    <string name="no_todos">No todos yet</string>
+    <string name="error_saving_todo">Error saving todo</string>
+</resources> 

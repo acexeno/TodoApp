@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Log In</h3>
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        Your username and password didn't match. Please try again.
+                    </div>
+                {% endif %}
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <div class="alert alert-warning">
+                            Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            Please login to see this page.
+                        </div>
+                    {% endif %}
+                {% endif %}
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Log In</button>
+                    </div>
+                </form>
+                <p class="text-center mt-3">Don't have an account? <a href="{% url 'todo:register' %}">Register</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
