@@ -193,3 +193,9 @@ venv.bak/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Custom ignored files
+cleanup.ps1
+copy_essentials.ps1
+copy_files.ps1
+get-pip.py
